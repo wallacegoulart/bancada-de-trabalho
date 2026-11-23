@@ -1,0 +1,17 @@
+DevWorkbench V0.6 — entrega consolidada
+
+1. Extraia o ZIP inteiro para uma pasta no notebook.
+2. Abra index.html no Google Chrome atualizado.
+3. Selecione uma pasta física (de preferência uma pasta separada, chamada DevWorkbench_Dados).
+4. O aplicativo cria dados/*.json e anotacoes/*.md nessa pasta. Não apague os arquivos.
+5. Na próxima abertura, o Chrome pode solicitar novamente a permissão da pasta.
+6. Para trocar de pasta, use "Alterar pasta" no topo. A troca NÃO migra automaticamente os dados entre pastas.
+7. A migração inicial tenta importar links, espaços, lembretes e foco antigos do localStorage, somente se o novo arquivo JSON ainda não existir. Para isso, abra no mesmo navegador e origem da versão anterior.
+8. O navegador pode mostrar apenas o nome da pasta; a File System Access API não disponibiliza o caminho absoluto por segurança.
+9. O Visualizador CSV V2 está em tools/ e abre em nova aba. Ele depende de AG Grid, PapaParse e AlaSQL via CDN, exigindo internet para carregar as bibliotecas se não estiverem em cache.
+10. Se a política do Chrome bloquear a File System Access API, o aplicativo não grava dados em localStorage como alternativa silenciosa.
+
+CONFIGURAÇÃO DOS BLOCOS DE FOCO:
+Arquivo js/app.js, no início: FOCUS_BLOCKS:8, FOCUS_MINUTES:30, FOCUS_MAX:16.
+
+ATENÇÃO: teste a criação de uma anotação e confirme o arquivo .md na pasta física antes de utilizar com informações importantes. Faça backups periódicos da pasta de dados. Não insira informações corporativas confidenciais sem autorização.
