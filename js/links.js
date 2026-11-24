@@ -17,9 +17,7 @@ function createLinkCard(link) {
   favorite.addEventListener("click", () => { link.favorite = !link.favorite; saveStorage(LINKS_KEY,links); renderLinks(); });
   const edit = document.createElement("button"); edit.className = "icon-btn"; edit.type = "button"; edit.textContent = "✎"; edit.title = "Editar link"; edit.setAttribute("aria-label", `Editar ${link.name}`);
   edit.addEventListener("click", () => openLinkDialog(link.id));
-  const remove = document.createElement("button"); remove.className = "icon-btn"; remove.type = "button"; remove.textContent = "×"; remove.title = "Excluir link"; remove.setAttribute("aria-label", `Excluir ${link.name}`);
-  remove.addEventListener("click", async () => { if (!await ask("Excluir link?",`Excluir o link "${link.name}"?`)) return; links = links.filter(item => item.id !== link.id); saveStorage(LINKS_KEY,links); renderLinks(); });
-  actions.append(favorite,edit,remove); card.append(anchor,actions); return card;
+  actions.append(favorite,edit); card.append(anchor,actions); return card;
 }
 function fillLinks(container, items) {
   container.replaceChildren();
@@ -78,6 +76,7 @@ $("#pageSize").addEventListener("change",()=>{linkPage=1;renderLinks();});
 function openLinkDialog(id = null) {
  if(!FileStorage.ready()){ensureFolder();return;}
   editingId = id;
+  $("#deleteLink").hidden=!id;
   $("#linkForm").reset(); refreshCatalog(); fillSpaces("linkSpace");
   $("#dialogTitle").textContent = id ? "Editar link" : "Adicionar link";
   if (id) { const link = links.find(item => item.id === id); if (!link) return; $("#linkName").value = link.name; $("#linkUrl").value = link.url; $("#linkDescription").value = link.description; setTags("linkTags",link.tags); $("#linkSpace").value=link.workspace_id||""; }
@@ -101,3 +100,5 @@ $("#linkForm").addEventListener("submit", event => {
   saveStorage(LINKS_KEY,links); renderLinks(); $("#linkDialog").close();
 });
 
+
+$('#deleteLink').onclick=async()=>{const link=links.find(x=>x.id===editingId);if(!link||!await ask('Excluir link?',`Excluir o link "${link.name}"?`))return;const old=links;links=links.filter(x=>x.id!==link.id);if(!await persist('links')){links=old;return;}$('#linkDialog').close();renderLinks();};
