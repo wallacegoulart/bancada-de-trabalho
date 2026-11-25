@@ -1,3 +1,0 @@
-V0.7.1a — aplicar somente sobre V0.7.1 completa.
-Feche a aplicação. Faça backup do código e dos dados. Copie os três arquivos JS para a pasta js existente, substituindo os anteriores. Teste com uma cópia dos dados.
-Teste realizado em Chromium com DOM real e API de pasta simulada. Seletor nativo e gravação física não homologados. Não altera layout nem esquema de dados.

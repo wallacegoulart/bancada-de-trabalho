@@ -3,7 +3,7 @@
 const FileStorage = (() => {
   let root = null;
   let queue = Promise.resolve();
-  const DB = 'devworkbench_directory_v07';
+  const DB = 'devworkbench_directory_v08';
   function dbOpen(){return new Promise((resolve,reject)=>{const req=indexedDB.open(DB,1);req.onupgradeneeded=()=>req.result.createObjectStore('settings');req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error);});}
   async function savedHandle(){const db=await dbOpen();return new Promise((resolve,reject)=>{const tx=db.transaction('settings','readonly');const req=tx.objectStore('settings').get('folder');req.onsuccess=()=>{resolve(req.result||null);db.close();};req.onerror=()=>{reject(req.error);db.close();};});}
   async function storeHandle(handle){const db=await dbOpen();return new Promise((resolve,reject)=>{const tx=db.transaction('settings','readwrite');tx.objectStore('settings').put(handle,'folder');tx.oncomplete=()=>{db.close();resolve();};tx.onerror=()=>{db.close();reject(tx.error);};});}

@@ -10,7 +10,7 @@ function renderSpaces() {
     const icon = document.createElement("span"); icon.className = "space-icon"; icon.textContent = "▦";
     const title = document.createElement("h3"); title.textContent = space.name;
     const description = document.createElement("p"); description.textContent = space.description || "Espaço de trabalho";
-    const status = document.createElement("span"); status.className = "space-status"; status.textContent = `${notes.filter(n=>(n.workspace_id||n.space)===space.id).length} notas · ${links.filter(n=>n.workspace_id===space.id).length} links`;
+    const status = document.createElement("span"); status.className = "space-status"; status.textContent = `${notes.filter(n=>(n.workspace_id||n.space)===space.id).length} notas · ${links.filter(n=>n.workspace_id===space.id).length} links · ${reminders.filter(r=>r.workspace_id===space.id&&!r.done).length} pendentes`;
     const actions = document.createElement("div"); actions.className = "card-actions";
     const remove = document.createElement("button"); remove.type = "button"; remove.className = "icon-btn"; remove.textContent = "×"; remove.title = "Excluir espaço";
     remove.setAttribute("aria-label",`Excluir espaço ${space.name}`);

@@ -1,2 +1,0 @@
-V0.7.1b COMPLETA
-Extraia em pasta nova. Abra index.html no Chrome. Teste com uma copia da pasta de dados. Nao apague a instalacao anterior nem a pasta de dados.

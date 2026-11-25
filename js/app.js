@@ -1,2 +1,2 @@
-function renderAll(){refreshSpaces();refreshCatalog();renderLinks();renderSpaces();renderFocus();renderHome();renderNotes();renderReminders();}
+function renderAll(){refreshSpaces();refreshCatalog();renderLinks();renderSpaces();renderFocus();renderHome();renderDaily();renderNotes();renderReminders();}
 (async()=>{try{updateFolder();if(await FileStorage.restore()){await loadAll();}else{if(!$('#folderDialog').open)$('#folderDialog').showModal();}updateClock();resetReminderForm();renderAll();}catch(e){console.error(e);toast('Falha na inicialização: '+e.message,true);if(!FileStorage.ready()&&!$('#folderDialog').open)$('#folderDialog').showModal();}})();
